@@ -125,7 +125,11 @@ int main()
 {
     Graph g;
     g.entry();
-    memset(visited, 0, sizeof(visited));
+    //memset(visited, 0, sizeof(visited));
+    for (int i = 0; i < 10; i++) 
+    {
+        visited[i] = 0;
+    }
 
     cout << "Starting DFS from vertex 0: ";
     g.DFS(0);
