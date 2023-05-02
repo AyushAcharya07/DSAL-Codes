@@ -135,3 +135,34 @@ int main()
 
     return 0;
 }
+
+Output:-
+    PS D:\Ayush\Codes\C++ Codes> cd "d:\Ayush\Codes\C++ Codes\" ; if ($?) { g++ dfsnew.cpp -o dfsnew } ; if ($?) { .\dfsnew }
+Enter the no. of vertices of the graph: 
+4
+Enter 1 if there is an edge present between the 2 vertices, 0 otherwise: 
+Is there an edge between vertex 0 and vertex 0? (0/1): 0
+Is there an edge between vertex 0 and vertex 1? (0/1): 1
+Is there an edge between vertex 0 and vertex 2? (0/1): 1
+Is there an edge between vertex 0 and vertex 3? (0/1): 0
+Is there an edge between vertex 1 and vertex 0? (0/1): 1
+Is there an edge between vertex 1 and vertex 1? (0/1): 0
+Is there an edge between vertex 1 and vertex 2? (0/1): 0
+Is there an edge between vertex 1 and vertex 3? (0/1): 1
+Is there an edge between vertex 2 and vertex 0? (0/1): 1
+Is there an edge between vertex 2 and vertex 1? (0/1): 0
+Is there an edge between vertex 2 and vertex 2? (0/1): 0
+Is there an edge between vertex 2 and vertex 3? (0/1): 1
+Is there an edge between vertex 3 and vertex 0? (0/1): 0
+Is there an edge between vertex 3 and vertex 1? (0/1): 1
+Is there an edge between vertex 3 and vertex 2? (0/1): 1
+Is there an edge between vertex 3 and vertex 3? (0/1): 0
+The adjacency matrix is:
+* 0 1 2 3
+0 0 1 1 0
+1 1 0 0 1
+2 1 0 0 1
+3 0 1 1 0 
+Starting DFS from vertex 0: 0 1 3 2
+done
+Visited vertices: 0 1 2 3
