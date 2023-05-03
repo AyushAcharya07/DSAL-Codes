@@ -124,3 +124,51 @@ int main()
     t.min_path();
     return 0;
 }
+
+Output:-
+    PS D:\Ayush\Codes\C++ Codes> cd "d:\Ayush\Codes\C++ Codes\" ; if ($?) { g++ prims.cpp -o prims } ; if ($?) { .\prims }
+Enter the no. of vertices : 
+4
+Enter the no. of edges : 
+5
+Contents of visited array before traversal are : 
+0 0 0 0 
+Adjacency Matrix initialization : 
+999 999 999 999 
+999 999 999 999 
+999 999 999 999 
+999 999 999 999 
+Enter the vertices present at end point of edges :
+0
+1
+Enter the weight present between 0 and 1 :
+5
+Enter the vertices present at end point of edges :
+0
+2
+Enter the weight present between 0 and 2 :
+8
+Enter the vertices present at end point of edges :
+1
+2
+Enter the weight present between 1 and 2 :
+10
+Enter the vertices present at end point of edges :
+1
+3
+Enter the weight present between 1 and 3 :
+15
+Enter the vertices present at end point of edges :
+2
+3
+Enter the weight present between 2 and 3 :
+20
+Adjacency Matrix after updation is :
+999 5 8 999
+5 999 10 15
+8 10 999 20
+999 15 20 999
+The minimum path found is 0->1 with cost : 5
+The minimum path found is 0->2 with cost : 8
+The minimum path found is 1->3 with cost : 15
+The minimum cost after traversal using Prim's algorithm is : 28
