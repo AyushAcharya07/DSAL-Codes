@@ -1,0 +1,120 @@
+bfs code
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+class Queue {
+private:
+    int front, rear;
+    int* array;
+public:
+    Queue() {
+        front = rear = -1;
+        array = new int[100];
+    }
+
+    bool is_full() {
+        return (rear == 99);
+    }
+
+    bool is_empty() {
+        return (front == -1);
+    }
+    void enqueue(int item) {
+        if (is_full()) {
+            cout << "Queue is full." << endl;
+            return;
+        }
+        rear++;
+        array[rear] = item;
+        if (front == -1) {
+            front = 0;
+        }
+    }
+
+    int dequeue() {
+        if (is_empty()) {
+            cout << "Queue is empty." << endl;
+            return -1;
+        }
+        int item = array[front];
+        if (front == rear) {
+            front = rear = -1;
+        }
+        else {
+            front++;
+        }
+        return item;
+    }
+};
+
+void add_edge(int** adj_list, int src, int dest) {
+    adj_list[src][++adj_list[src][0]] = dest;
+}
+
+void bfs(int** adj_list, int num_vertices, int start_vertex) {
+    bool* visited = new bool[num_vertices];
+    for (int i = 0; i < num_vertices; i++) {
+        visited[i] = false;
+    }
+ Queue q;
+    visited[start_vertex] = true;
+    q.enqueue(start_vertex);
+    while (!q.is_empty()) {
+        int curr_vertex = q.dequeue();
+        cout << curr_vertex << " ";
+        for (int i = 1; i <= adj_list[curr_vertex][0]; i++) {
+            int adj_vertex = adj_list[curr_vertex][i];
+            if (!visited[adj_vertex]) {
+                visited[adj_vertex] = true;
+                q.enqueue(adj_vertex);
+            }
+        }
+    }
+    cout << endl;
+    delete[] visited;
+}
+int main() {
+    int num_vertices, num_edges;
+    cout << "Enter the number of vertices in the graph: ";
+    cin >> num_vertices;
+    int** adj_list = new int*[num_vertices];
+    for (int i = 0; i < num_vertices; i++) {
+        adj_list[i] = new int[num_vertices + 1];
+        adj_list[i][0] = 0;
+    }
+    for (int src = 0; src < num_vertices; src++) {
+        for (int dest = 0; dest < num_vertices; dest++) {
+            int edge_present;
+            cout << "Is there an edge from " << src << " to " << dest << "? (1 for yes, 0 for no, -1 to exit) ";
+            cin >> edge_present;
+            if (edge_present == 1) {
+                add_edge(adj_list, src, dest);
+            } else if (edge_present == -1) {
+                break;
+            }
+        }
+    }
+cout << "Adjacency list:" << endl;
+    for (int i =0; i < num_vertices; i++) {
+    cout << i << ": ";
+    for (int j = 1; j <= adj_list[i][0]; j++) {
+        cout << adj_list[i][j] << " ";
+        }
+    cout << endl;
+    }
+    int start_vertex;
+cout << "Enter the starting vertex for BFS: ";
+cin >> start_vertex;
+
+bfs(adj_list, num_vertices, start_vertex);
+
+// deallocating memory
+for (int i = 0; i < num_vertices; i++) {
+    delete[] adj_list[i];
+}
+delete[] adj_list;
+
+return 0;
+}
