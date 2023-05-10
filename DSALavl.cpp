@@ -34,6 +34,10 @@ class AVL
     int ht_find(node *t);
     node *del (node *r,char []);
     node *min (node *r);
+    node *llrotation(node *t);
+    node *rrrotation(node *t);
+    node *rlrotation(node *t);
+    node *lrrotation(node *t);
     
 };
 
@@ -86,6 +90,43 @@ void dictionary::insert(node* root,node* temp)
     }
     
     temp->height=ht_allot(temp);
+}
+
+node *AVL::llrotation(node *t)
+{
+    node *p,*q;
+    p=t;
+    q=p->left;
+    p->left=q->right;
+    q->right=p;
+    
+    return q;
+}
+
+node *AVL::rrrotation(node *t)
+{
+    node *p,*q;
+    p=t;
+    q=p->right;
+    p->right=q->left;
+    q->left=p;
+    
+    return q;
+}
+
+node *AVL::lrrotation(node *t)
+{
+    node *p,*q,*r;
+    p=t;
+    q=p->left;
+    r=p->left->right;
+
+    p -> left = r->right;
+        q ->right = r->left;
+        r ->right = p;
+        r->left = q; 
+        
+        return r;
 }
 
 void AVL::display(node* root)
@@ -327,7 +368,6 @@ int main()
         cout<<"Exited successfully!!"<<endl;
     return 0;
 }
-
 
 
 
