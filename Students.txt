@@ -1,0 +1,4 @@
+********************STUDENT INFO FILE********************
+ROLL NO.		NAME			CLASS		ADDRESS
+
+1				SHIVA			SE_A		PUNE
