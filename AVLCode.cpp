@@ -10,13 +10,17 @@
 # include <iostream>
 using namespace std;
 
-class Node
+struct Node
 {
    public:
    string key;
    string meaning;
    Node *left;
    Node *right; 
+   Node()
+   {
+       left=right=NULL;
+   }
 };
 
 class AVL
@@ -65,7 +69,7 @@ void AVL::create()
         cin>>temp->key;
         cout<<"Enter the meaning : "<<endl;
         cin>>temp->meaning;
-        temp->left=temp->right=NULL;
+        //temp->left=temp->right=NULL;
 
         root=insert(root,temp);
         cout<<"\nDo you want to insert more keywords??"<<endl;
