@@ -15,8 +15,7 @@ class OBST
     int n;
     int p[10],q[10];
     string values[10];
-    int w[10][10],c[10][10],r[10][10];
-    
+    int w[10][10],c[10][10],r[10][10],i,j,k,m; 
     void entry();
     void assign();
     int find(int a,int b);
@@ -28,81 +27,87 @@ class OBST
 
 void OBST::entry()
 {
-    cout<<"Enter the no. of values in the OBST : "<<endl;
+        cout<<"Enter the no. of values in the OBST : "<<endl;
     cin>>n;
     cout<<"Enter the values : "<<endl;
     
-    for (int i=1;i<=n;i++)
+    for (i=1;i<=n;i++)
     {
         cin>>values[i];
     }
     cout<<"Enter the values of success : "<<endl;
-    for (int i=1;i<=n;i++)
+    for (i=1;i<=n;i++)
         cin>>p[i];
 
     cout<<"Enter the values of failure : "<<endl;
-    for (int i=0;i<=n;i++)
+    for (i=0;i<=n;i++)
         cin>>q[i];
 }
 
 void OBST::assign()
 {
-    for (int i=0;i<=n;i++)
+    for (i=0;i<=n;i++)
     {
         w[i][i]=q[i];
         c[i][i]=r[i][i]=0;
     }
-    for (int i=0;i<=n;i++)
+    for (i=0;i<=n;i++)
     {
-        for (int j=i+1;j<=n;j++)
+        for (j=i+1;j<=n;j++)
         {
-            w[i][j]=p[j]+q[i]+q[j];
-            c[i][j]=q[i]+c[i][j-1]+c[j][j];
+            w[i][j]=p[j]+q[j]+w[i][i];
+            c[i][j]=w[i][j]+c[j][j];
             r[i][j]=j;
         }
     }
-    for (int m=2;m<=n;m++)
+    for (m=2;m<=n;m++)
     {
-        for (int i=0;i<=n;i++)
+        for (i=0;i<=n;i++)
         {
-            int j=i+m;
-            w[i][j]=w[i][j-1]+p[i]+q[j];
-            int k=find(i,j);
+            j=i+m;
+            w[i][j]=w[i][j-1]+p[j]+q[j];
+            k=find(i,j);
             r[i][j]=k;
             c[i][j]=w[i][j]+c[i][k-1]+c[k][j];
         }
     }
 }
 
-int OBST::find(int a,int b)
+int OBST::find(int i,int j)
 {
-    int min=1000;
-    int l;
-    for (int m=a+1;m<=b;m++)
+    int min=2000;
+    int l,m;
+    for (m=i+1;i<=j;i++)
     {
-        if (c[a][m-1]+c[m][b]<min)
+        if (c[i][m-1]+c[m][i]<min)
         {
-            min=c[a][m-1]+c[m][b];
+            min=c[i][m-1]+c[m][j];
             l=m;
         }
     }
     return l;
 }
 
-void OBST::print(int a,int b)
+void OBST::print(int i,int j)
 {
-    if (a<b)
-        cout<<"\n"<<values[r[a][b]];
+    
+    if (i<j)
+        cout<<"\n"<<values[r[i][j]];
     else
         return;
-    print(a,r[a][b]-1);
-    print(r[a][b],b);    
+    print(i,r[i][j]-1);
+    print(r[i][j],j);    
     
 }
+
+
 
 int main()
 {
     OBST o;
+
     o.entry();
+    o.print(0,o.n);
+    //o.display();
     return 0;
 }
