@@ -268,7 +268,7 @@ int main ()
                 break;
 
             case 6:
-                cout<<"\n\tExiting from the program........."<<endl;
+                cout<<"\n\tExiting from the program.........."<<endl;
                 exit(0);
                 break;
 
