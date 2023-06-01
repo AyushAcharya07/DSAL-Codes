@@ -1,4 +1,4 @@
  DSAL-Codes of SEM IV
 
 # License:
-[LICENSE](LICENSE)
+This Project is licensed under the MIT License [MIT LICENSE](LICENSE)
